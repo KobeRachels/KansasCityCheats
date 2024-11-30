@@ -35,13 +35,22 @@
             font-size: 1.2rem;
             font-style: italic;
         }
+        .second-caption {
+            opacity: 0;  /* Initially hide the second caption */
+            margin-top: 20px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            font-style: normal;
+            transition: opacity 2s ease-in-out;  /* Add fade-in effect */
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <img id="bigtyImage" src="bigty.jpg" alt="This is for you, Big Ty.">
         <div class="caption" id="captionText">This is for you, Big Ty.</div>
-        <div class="caption" id="captionText">Coming 2025...</div>
+        <br> <!-- Line break for spacing -->
+        <div class="second-caption" id="secondCaption">Coming 2025...</div>
     </div>
 
     <script>
@@ -49,8 +58,16 @@
         window.addEventListener('load', () => {
             const image = document.getElementById('bigtyImage');
             const caption = document.getElementById('captionText');
-            image.style.opacity = 1;  // Fade the image in
-            caption.style.opacity = 1;  // Fade the caption in
+            const secondCaption = document.getElementById('secondCaption');
+
+            // Fade in the image and first caption immediately
+            image.style.opacity = 1;  
+            caption.style.opacity = 1;  
+
+            // Fade in the second caption after 1 second
+            setTimeout(() => {
+                secondCaption.style.opacity = 1;
+            }, 1000);  // 1 second delay for the second caption
         });
     </script>
 </body>
