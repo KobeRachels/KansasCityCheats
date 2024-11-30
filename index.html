@@ -20,6 +20,7 @@
             max-width: 90%;
         }
         img {
+            display: none;  /* Initially hide the image */
             width: 100%;
             max-width: 600px;
             height: auto;
@@ -30,13 +31,37 @@
             font-size: 1.2rem;
             color: #333;
             font-style: italic;
+            cursor: pointer;  /* Make the caption look clickable */
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <img src="bigty.jpg" alt="This is for you, Big Ty.">
-        <div class="caption">This is for you, Big Ty.</div>
+        <img id="bigtyImage" src="bigty.jpg" alt="This is for you, Big Ty.">
+        <div class="caption" id="bigtyCaption">This is for you, Big Ty.</div>
     </div>
+
+    <script>
+        const caption = document.getElementById('bigtyCaption');
+        const image = document.getElementById('bigtyImage');
+
+        // Show image on hover
+        caption.addEventListener('mouseenter', () => {
+            image.style.display = 'block';
+        });
+
+        caption.addEventListener('mouseleave', () => {
+            image.style.display = 'none';
+        });
+
+        // Alternatively, toggle image visibility on click
+        caption.addEventListener('click', () => {
+            if (image.style.display === 'none' || image.style.display === '') {
+                image.style.display = 'block';
+            } else {
+                image.style.display = 'none';
+            }
+        });
+    </script>
 </body>
 </html>
