@@ -20,11 +20,12 @@
             max-width: 90%;
         }
         img {
-            display: none;  /* Initially hide the image */
+            opacity: 0;  /* Initially hide the image by setting opacity to 0 */
             width: 100%;
             max-width: 600px;
             height: auto;
             border-radius: 10px;
+            transition: opacity 2s ease-in-out;  /* Add a transition effect for fading in */
         }
         .caption {
             margin-top: 20px;
@@ -45,22 +46,13 @@
         const caption = document.getElementById('bigtyCaption');
         const image = document.getElementById('bigtyImage');
 
-        // Show image on hover
+        // Show the image with a fade-in effect when hovered over
         caption.addEventListener('mouseenter', () => {
-            image.style.display = 'block';
+            image.style.opacity = 1;  // Fade the image in
         });
 
         caption.addEventListener('mouseleave', () => {
-            image.style.display = 'none';
-        });
-
-        // Alternatively, toggle image visibility on click
-        caption.addEventListener('click', () => {
-            if (image.style.display === 'none' || image.style.display === '') {
-                image.style.display = 'block';
-            } else {
-                image.style.display = 'none';
-            }
+            image.style.opacity = 0;  // Fade the image out
         });
     </script>
 </body>
