@@ -20,7 +20,7 @@
             max-width: 90%;
         }
         img {
-            opacity: 0;  /* Initially hide the image by setting opacity to 0 */
+            opacity: 0;  /* Initially hide the image */
             width: 100%;
             max-width: 600px;
             height: auto;
@@ -32,27 +32,20 @@
             font-size: 1.2rem;
             color: #333;
             font-style: italic;
-            cursor: pointer;  /* Make the caption look clickable */
         }
     </style>
 </head>
 <body>
     <div class="container">
         <img id="bigtyImage" src="bigty.jpg" alt="This is for you, Big Ty.">
-        <div class="caption" id="bigtyCaption">This is for you, Big Ty.</div>
+        <div class="caption">This is for you, Big Ty.</div>
     </div>
 
     <script>
-        const caption = document.getElementById('bigtyCaption');
-        const image = document.getElementById('bigtyImage');
-
-        // Show the image with a fade-in effect when hovered over
-        caption.addEventListener('mouseenter', () => {
+        // Wait for the page to fully load before showing the image
+        window.addEventListener('load', () => {
+            const image = document.getElementById('bigtyImage');
             image.style.opacity = 1;  // Fade the image in
-        });
-
-        caption.addEventListener('mouseleave', () => {
-            image.style.opacity = 0;  // Fade the image out
         });
     </script>
 </body>
