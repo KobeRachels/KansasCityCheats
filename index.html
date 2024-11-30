@@ -13,24 +13,26 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #f4f4f4;
+            background: linear-gradient(135deg, #333, #444);  /* Dark gray gradient background */
+            color: #fff;  /* White text color for contrast */
         }
         .container {
             text-align: center;
             max-width: 90%;
         }
+        img, .caption {
+            opacity: 0;  /* Initially hide both the image and the caption */
+            transition: opacity 2s ease-in-out;  /* Add a transition effect for fading in */
+        }
         img {
-            opacity: 0;  /* Initially hide the image */
             width: 100%;
             max-width: 600px;
             height: auto;
             border-radius: 10px;
-            transition: opacity 2s ease-in-out;  /* Add a transition effect for fading in */
         }
         .caption {
             margin-top: 20px;
             font-size: 1.2rem;
-            color: #333;
             font-style: italic;
         }
     </style>
@@ -38,14 +40,16 @@
 <body>
     <div class="container">
         <img id="bigtyImage" src="bigty.jpg" alt="This is for you, Big Ty.">
-        <div class="caption">This is for you, Big Ty.</div>
+        <div class="caption" id="captionText">This is for you, Big Ty.</div>
     </div>
 
     <script>
-        // Wait for the page to fully load before showing the image
+        // Wait for the page to fully load before showing the image and caption
         window.addEventListener('load', () => {
             const image = document.getElementById('bigtyImage');
+            const caption = document.getElementById('captionText');
             image.style.opacity = 1;  // Fade the image in
+            caption.style.opacity = 1;  // Fade the caption in
         });
     </script>
 </body>
