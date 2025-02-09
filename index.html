@@ -15,12 +15,13 @@
             height: 100vh;
             background: linear-gradient(135deg, #333, #444);  /* Dark gray gradient background */
             color: #fff;  /* White text color for contrast */
+            text-align: center;
         }
         .container {
             text-align: center;
             max-width: 90%;
         }
-        img, .caption, iframe {
+        img, .caption, iframe, .video-link, .second-caption {
             opacity: 0;  /* Initially hide elements */
             transition: opacity 2s ease-in-out;  /* Add a transition effect for fading in */
         }
@@ -41,6 +42,17 @@
             height: 560px;
             border: none;
         }
+        .video-link {
+            margin-top: 20px;
+            display: block;
+            font-size: 1.2rem;
+            text-decoration: none;
+            color: #f1c40f;  /* Gold color */
+            font-weight: bold;
+        }
+        .video-link:hover {
+            color: #ffeb3b;
+        }
         .second-caption {
             opacity: 0;  /* Initially hide the second caption */
             margin-top: 20px;
@@ -49,15 +61,38 @@
             font-style: normal;
             transition: opacity 2s ease-in-out;  /* Add fade-in effect */
         }
+        .play-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 1.2rem;
+            background-color: #f1c40f;
+            color: #333;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .play-button:hover {
+            background-color: #ffeb3b;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <img id="bigtyImage" src="IMG_4157.jpeg" alt="In Shayshawn we trust. 🙏🏼">
         <div class="caption" id="captionText">In Shayshawn we trust. 🙏🏼</div>
-        
-        <!-- Embedded YouTube Shorts Video -->
-        <iframe id="youtubeVideo" src="https://www.youtube.com/embed/KY_zXYL-aqo" allowfullscreen></iframe>
+
+        <!-- Button to Play Video with Sound -->
+        <button class="play-button" id="playButton">▶ Play Video</button>
+
+        <!-- Embedded YouTube Shorts Video (Autoplay on Click) -->
+        <iframe id="youtubeVideo" src="https://www.youtube.com/embed/KY_zXYL-aqo?autoplay=1&mute=1" allowfullscreen></iframe>
+
+        <!-- Fallback Link to YouTube Shorts -->
+        <a id="videoLink" class="video-link" href="https://youtube.com/shorts/KY_zXYL-aqo?si=UyQs8j5BU1cOLrW4" target="_blank">
+            Watch on YouTube
+        </a>
 
         <br> <!-- Line break for spacing -->
         <div class="second-caption" id="secondCaption">Coming 2025...</div>
@@ -69,12 +104,25 @@
             const image = document.getElementById('bigtyImage');
             const caption = document.getElementById('captionText');
             const video = document.getElementById('youtubeVideo');
+            const videoLink = document.getElementById('videoLink');
             const secondCaption = document.getElementById('secondCaption');
+            const playButton = document.getElementById('playButton');
 
-            // Fade in the image, caption, and video
+            // Fade in the image and caption
             image.style.opacity = 1;  
             caption.style.opacity = 1;  
-            video.style.opacity = 1;
+
+            // If the video loads successfully, hide the fallback link
+            video.onload = function () {
+                video.style.opacity = 1;
+                videoLink.style.display = "none";
+            };
+
+            // Play video with sound when button is clicked
+            playButton.addEventListener('click', () => {
+                video.src = "https://www.youtube.com/embed/KY_zXYL-aqo?autoplay=1";
+                playButton.style.display = "none"; // Hide button after clicking
+            });
 
             // Fade in the second caption after 1 second
             setTimeout(() => {
