@@ -20,8 +20,8 @@
             text-align: center;
             max-width: 90%;
         }
-        img, .caption {
-            opacity: 0;  /* Initially hide both the image and the caption */
+        img, .caption, iframe {
+            opacity: 0;  /* Initially hide elements */
             transition: opacity 2s ease-in-out;  /* Add a transition effect for fading in */
         }
         img {
@@ -34,6 +34,12 @@
             margin-top: 20px;
             font-size: 1.2rem;
             font-style: italic;
+        }
+        iframe {
+            margin-top: 20px;
+            width: 315px;
+            height: 560px;
+            border: none;
         }
         .second-caption {
             opacity: 0;  /* Initially hide the second caption */
@@ -49,20 +55,26 @@
     <div class="container">
         <img id="bigtyImage" src="IMG_4157.jpeg" alt="In Shayshawn we trust. 🙏🏼">
         <div class="caption" id="captionText">In Shayshawn we trust. 🙏🏼</div>
+        
+        <!-- Embedded YouTube Shorts Video -->
+        <iframe id="youtubeVideo" src="https://www.youtube.com/embed/KY_zXYL-aqo" allowfullscreen></iframe>
+
         <br> <!-- Line break for spacing -->
         <div class="second-caption" id="secondCaption">Coming 2025...</div>
     </div>
 
     <script>
-        // Wait for the page to fully load before showing the image and caption
+        // Wait for the page to fully load before showing elements
         window.addEventListener('load', () => {
             const image = document.getElementById('bigtyImage');
             const caption = document.getElementById('captionText');
+            const video = document.getElementById('youtubeVideo');
             const secondCaption = document.getElementById('secondCaption');
 
-            // Fade in the image and first caption immediately
+            // Fade in the image, caption, and video
             image.style.opacity = 1;  
             caption.style.opacity = 1;  
+            video.style.opacity = 1;
 
             // Fade in the second caption after 1 second
             setTimeout(() => {
